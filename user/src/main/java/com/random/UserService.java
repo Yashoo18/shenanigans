@@ -1,4 +1,4 @@
-package com.random.shenanigans;
+package com.random;
 
 import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;

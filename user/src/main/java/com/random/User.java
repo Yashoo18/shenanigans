@@ -1,4 +1,4 @@
-package com.random.shenanigans;
+package com.random;
 
 import jakarta.persistence.*;
 @Entity

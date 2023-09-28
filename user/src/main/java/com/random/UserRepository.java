@@ -1,4 +1,4 @@
-package com.random.shenanigans;
+package com.random;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

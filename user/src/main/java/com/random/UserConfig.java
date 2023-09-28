@@ -1,4 +1,4 @@
-package com.random.shenanigans;
+package com.random;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
