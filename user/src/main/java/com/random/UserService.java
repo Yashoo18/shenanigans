@@ -54,4 +54,8 @@ public class UserService {
         userRepository.save(user);
         return user;
     }
+    //TODO
+    //    public List<User> fraudCheck(@RequestBody String username) {
+    ////        return userRepository.findAll();
+    //    }
 }
