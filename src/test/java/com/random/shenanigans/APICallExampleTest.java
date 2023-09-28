@@ -9,7 +9,7 @@ public class APICallExampleTest {
         try {
             URL url = new URL("https://randomuser.me/api/");
 
-            UserController a = new UserController();
+            UserConfig a = new UserConfig();
             //            int code = a.API(url);
             // Check if the response code is 200 (HTTP OK)
             //            assertEquals(200, code);
