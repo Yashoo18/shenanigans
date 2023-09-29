@@ -50,7 +50,7 @@ public class UserService {
         String name = jsonObject.get("results").getAsJsonArray().get(0).getAsJsonObject().get("name").getAsJsonObject().get("first").getAsString();
         String email = name + "@gmail.com";
         System.out.println(name + ": email :"+ email);
-        User user = new User(name,email);
+        User user = new User(null,name,email);
         userRepository.save(user);
         return user;
     }
