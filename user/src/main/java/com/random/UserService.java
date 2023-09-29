@@ -16,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -36,7 +37,7 @@ public class UserService {
 
     @GetMapping("/getbyuser")
     public List<User> findByUsername(@RequestBody String username) {
-        return userRepository.findAll();
+        return userRepository.findAll().stream().filter(user -> username.equals(user.getUsername())).collect(Collectors.toList());
     }
 
     @GetMapping("/insertrandom")

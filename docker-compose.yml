@@ -1,39 +1,15 @@
 services:
-  db:
-    container_name: postgres
-    image: postgres
+  mysql:
+    image: mysql:latest
+    container_name: hemdb
     environment:
-      POSTGRES_USER: hemdb
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - postgres:/data/postgres
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: hemdb
+      MYSQL_USER: hemdb
+      MYSQL_PASSWORD: password
     ports:
-      - "5432:5432"
-    networks:
-      - postgres
-    restart: unless-stopped
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      - "3306:3306"
     volumes:
-      - pgadmin:/var/lib/pgadmin
-    ports:
-      - "5050:80"
-    networks:
-      - postgres
-    restart: unless-stopped
-    depends_on:
-      - db
-
-networks:
-  postgres:
-    driver: bridge
-
+      - mysql_data:/var/lib/mysql
 volumes:
-  postgres:
-  pgadmin:
+  mysql_data:
