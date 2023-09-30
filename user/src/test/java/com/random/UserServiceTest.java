@@ -1,12 +1,14 @@
 package com.random;
 
+import com.random.data.User;
+import com.random.repo.UserRepository;
+import com.random.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
