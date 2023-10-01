@@ -1,4 +1,4 @@
-package com.random;
+package com.random.data;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
