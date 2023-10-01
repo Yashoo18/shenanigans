@@ -18,8 +18,9 @@ Dev:
 Test:
 
 1. Unit tests
-2. E2E integration tests (follows TDD)
-3. Used test containers (mock mvc, mock bean)
+2. Mockito
+3. E2E integration tests (follows TDD)
+4. Used test containers (mock mvc, mock bean)
 
 TODO:
 1. Connect 2 microservices
