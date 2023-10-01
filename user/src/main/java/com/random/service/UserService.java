@@ -4,53 +4,36 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.random.data.User;
 import com.random.repo.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
-import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.support.MessageBuilder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
-@RequestMapping("/api")
+@Service
 public class UserService {
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
-    private final QueueMessagingTemplate queueMessagingTemplate;
 
-    Logger logger = LoggerFactory.getLogger(UserService.class);
-    @Value("${cloud.aws.end-point.uri}")
-    private String endpoint;
-
-    public UserService(UserRepository userRepository, RestTemplate restTemplate, QueueMessagingTemplate queueMessagingTemplate) {
+    public UserService(UserRepository userRepository, RestTemplate restTemplate) {
         this.userRepository = userRepository;
         this.restTemplate = restTemplate;
-        this.queueMessagingTemplate = queueMessagingTemplate;
     }
 
-    @GetMapping("/getall")
     public List<User> selectAllCustomers() {
         return userRepository.findAll();
     }
 
-    @PostMapping("/create")
-    public User createUser(@RequestBody User user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    @GetMapping("/getbyuser/{username}")
-    public List<User> findByUsername(@PathVariable String username) {
+    public List<User> findByUsername(String username) {
         return userRepository.findAll().stream().filter(user -> username.equals(user.getUsername())).collect(Collectors.toList());
     }
 
-    @GetMapping("/insertrandom")
     public User API() {
         JsonObject jsonObject = null;
         String apiUrl = "https://randomuser.me/api/";
@@ -64,19 +47,5 @@ public class UserService {
         User user = new User(null, name, email);
         userRepository.save(user);
         return user;
-    }
-    //TODO
-    //    public List<User> fraudCheck(@RequestBody String username) {
-    //        return userRepository.findAll();
-    //    }
-
-    @GetMapping("/send/{message}")
-    public void sendMessageToSQS(@PathVariable String message) {
-        queueMessagingTemplate.send(endpoint, MessageBuilder.withPayload(message).build());
-    }
-
-    @SqsListener("testqueue")
-    public void loadMessageFromSQS(String message)  {
-        logger.info("message from SQS Queue {}",message);
     }
 }
