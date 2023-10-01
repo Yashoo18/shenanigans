@@ -96,13 +96,22 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.1.1</version>
                 <configuration>
                     <from>
-                        <image>openjdk:17-alpine</image>
+                        <image>eclipse-temurin:17</image>
+                        <platforms>
+                            <platform>
+                                <architecture>amd64</architecture>
+                                <os>linux</os>
+                            </platform>
+                        </platforms>
                     </from>
                     <to>
-                        <image>shenanigans-api:latest</image>
+                        <image>docker.io/yashoo/shenanigans:1.0</image>
+                        <tags>
+                            <tag>latest</tag>
+                        </tags>
                     </to>
                 </configuration>
             </plugin>
