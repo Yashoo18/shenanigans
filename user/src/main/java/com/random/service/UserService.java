@@ -45,8 +45,8 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    @GetMapping("/getbyuser")
-    public List<User> findByUsername(@RequestBody String username) {
+    @GetMapping("/getbyuser/{username}")
+    public List<User> findByUsername(@PathVariable String username) {
         return userRepository.findAll().stream().filter(user -> username.equals(user.getUsername())).collect(Collectors.toList());
     }
 
