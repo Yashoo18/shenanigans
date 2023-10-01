@@ -9,12 +9,13 @@ Things on here
 Dev:
 1. 2 spring boot microservices
 2. One microservice has 4 spring boot api (in proper spring mvc format)
-3. Another one needs to be implemented
+3. Another one is for authentication and fraud check, just returns false for now
 4. Docker, docker compose, docker db
 5. Mvn build package with jib
 6. Connect to aws secretsmanager
 7. Connect to aws sqs pub/sub
 8. Connect to AWS RDS
+9. Added dumb connection between 2 microservices
 
 Test:
 

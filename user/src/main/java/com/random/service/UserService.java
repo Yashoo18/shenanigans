@@ -1,5 +1,6 @@
 package com.random.service;
 
+import com.amazonaws.Response;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.random.data.User;
@@ -47,5 +48,9 @@ public class UserService {
         User user = new User(null, name, email);
         userRepository.save(user);
         return user;
+    }
+
+    public ResponseEntity<String> makeAPICall(String apiUrl){
+        return restTemplate.exchange(apiUrl, HttpMethod.GET, null, String.class);
     }
 }

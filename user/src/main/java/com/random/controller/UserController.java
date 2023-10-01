@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,10 +47,12 @@ public class UserController {
     public User API() {
         return userService.API();
     }
-    //TODO
-    //    public List<User> fraudCheck(@RequestBody String username) {
-    //        return userRepository.findAll();
-    //    }
+
+    @GetMapping("/fraudcheck/{username}")
+    public ResponseEntity<String> fraudCheck(@PathVariable String username) {
+        String apiUrl = "http://localhost:8081/fraud";
+        return userService.makeAPICall(apiUrl);
+    }
 
     @GetMapping("/send/{message}")
     public void sendMessageToSQS(@PathVariable String message) {
@@ -57,7 +60,7 @@ public class UserController {
     }
 
     @SqsListener("testqueue")
-    public void loadMessageFromSQS(String message)  {
-        logger.info("message from SQS Queue {}",message);
+    public void loadMessageFromSQS(String message) {
+        logger.info("message from SQS Queue {}", message);
     }
 }
