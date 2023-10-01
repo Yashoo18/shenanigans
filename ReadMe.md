@@ -14,6 +14,7 @@ Dev:
 5. Mvn build package with jib
 6. Connect to aws secretsmanager
 7. Connect to aws sqs pub/sub
+8. Connect to AWS RDS
 
 Test:
 
@@ -25,6 +26,8 @@ Test:
 TODO:
 1. Connect 2 microservices
 2. Some kinda kafka (which is similar to sqs)
+3. some angular 
+4. some kubernetes
 
 Useful commands:
 
